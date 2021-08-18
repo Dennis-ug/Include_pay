@@ -14,6 +14,14 @@ class IncludePay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        fontFamily: null,
+        textTheme: TextTheme(),
+        primaryColor: Color.fromRGBO(0, 179, 13, 1),
+        primaryTextTheme: TextTheme(
+          bodyText1: TextStyle(fontFamily: " Poppins-reg"),
+        ),
+      ),
       home: Intro(),
     );
   }

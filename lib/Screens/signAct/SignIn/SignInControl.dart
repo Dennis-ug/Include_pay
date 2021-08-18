@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:includepay/Screens/Error%20Screen/error.dart';
 import 'package:includepay/Screens/Otp/otp.dart';
 import 'package:includepay/Screens/baseScreen/mainBase.dart';
 
