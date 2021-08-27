@@ -12,7 +12,7 @@ import '/Screens/baseScreen/baseController.dart';
 class BaseView extends StatelessWidget {
   BaseView({Key? key}) : super(key: key);
   final contro = Get.put(TabControl());
-  final double _screen = 592.0;
+  final double _screen = 640.0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class BaseView extends StatelessWidget {
                       height: context.height * 0.125,
                       width: context.width * 0.85,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(
                             children: [
@@ -61,13 +62,13 @@ class BaseView extends StatelessWidget {
                                         Text("Welcome",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
-                                              fontSize: 24,
+                                              fontSize: 30,
                                               color: Colors.white,
                                             )),
                                         Text(
-                                          "What would you like to today?",
+                                          "John, What would you like to today?",
                                           style: TextStyle(
-                                            fontSize: 8,
+                                            fontSize: 10,
                                             color: Colors.white,
                                           ),
                                         ),
@@ -78,43 +79,43 @@ class BaseView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      child: Stack(
-                                        children: [
-                                          CircleAvatar(
-                                            radius: context.height * 0.045,
-                                            child: Text(
-                                              "JM",
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      context.height * 0.03),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    // FittedBox(child: Text("John M"))
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("John\n"),
-                                    Text("077254568"),
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 8.0),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //     children: [
+                          //       Column(
+                          //         children: [
+                          //           Container(
+                          //             child: Stack(
+                          //               children: [
+                          //                 CircleAvatar(
+                          //                   radius: context.height * 0.045,
+                          //                   child: Text(
+                          //                     "JM",
+                          //                     style: TextStyle(
+                          //                         fontSize:
+                          //                             context.height * 0.03),
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //           // FittedBox(child: Text("John M"))
+                          //         ],
+                          //       ),
+                          //       Column(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         mainAxisAlignment:
+                          //             MainAxisAlignment.spaceBetween,
+                          //         children: [
+                          //           Text("John\n"),
+                          //           Text("077254568"),
+                          //         ],
+                          //       )
+                          //     ],
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
@@ -354,10 +355,68 @@ class BaseView extends StatelessWidget {
               ],
             ),
           ),
+          //Profile panel
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 50,
+                          child: FaIcon(
+                            FontAwesomeIcons.solidUser,
+                            color: greenLight,
+                            size: 50,
+                          ),
+                        ),
+                        Positioned(
+                          left: 70,
+                          top: 70,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: greenLight,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Text("Name"), Text("data")],
+                    ),
+                  ),
+                )
+              ],
+            ),
+            // child: Center(
+            //   child: Text(
+            //     'Profile Comming soon',
+            //     style: TextStyle(fontSize: 30),
+            //   ),
+            // ),
+          ),
           Container(
             child: Center(
               child: Text(
-                'Home 2',
+                'Notification coming soon',
                 style: TextStyle(fontSize: 30),
               ),
             ),
@@ -365,15 +424,7 @@ class BaseView extends StatelessWidget {
           Container(
             child: Center(
               child: Text(
-                'Home 3',
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text(
-                'Home 4',
+                'Setting coming soon',
                 style: TextStyle(fontSize: 30),
               ),
             ),

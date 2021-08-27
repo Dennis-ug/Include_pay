@@ -24,6 +24,10 @@ class IntroWig extends StatelessWidget {
   IntroWig({Key? key}) : super(key: key);
 
   final _introKey = GlobalKey<IntroductionScreenState>();
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +60,7 @@ class IntroWig extends StatelessWidget {
                 body: e.body,
                 image: Image.asset(
                   e.img,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   height: double.infinity,
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -65,13 +69,13 @@ class IntroWig extends StatelessWidget {
                   contentMargin: const EdgeInsets.symmetric(horizontal: 16),
                   fullScreen: true,
                   bodyFlex: 2,
-                  imageFlex: 3,
+                  imageFlex: 1,
                 ),
               ),
             )
             .toList(),
         onDone: () {
-          Get.to(() => SignIn());
+          Get.off(() => SignIn());
         },
         showSkipButton: true,
         skipFlex: 0,

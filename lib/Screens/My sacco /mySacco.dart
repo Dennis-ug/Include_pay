@@ -17,13 +17,14 @@ class MySaccoView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text(
           "Agape Sacco",
           style: TextStyle(
             color: Colors.white,
           ),
         ),
-        iconTheme: IconThemeData(color: greenLight),
+        // iconTheme: IconThemeData(color: greenLight),
         backgroundColor: greenLight,
       ),
       body: SingleChildScrollView(
@@ -59,28 +60,33 @@ class MySaccoView extends StatelessWidget {
                                         child: Stack(
                                           children: [
                                             CircleAvatar(
+                                              backgroundColor: Colors.white,
                                               radius: 22,
-                                              child: Text("JM"),
-                                            ),
-                                            Positioned(
-                                              left: 26,
-                                              top: 26,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: greenLight,
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(4),
-                                                  child: Icon(
-                                                    Icons.edit,
-                                                    color: Colors.white,
-                                                    size: 10,
-                                                  ),
-                                                ),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.solidUser,
+                                                color: greenLight,
+                                                size: 35,
                                               ),
-                                            )
+                                            ),
+                                            // Positioned(
+                                            //   left: 26,
+                                            //   top: 26,
+                                            //   child: Container(
+                                            //     decoration: BoxDecoration(
+                                            //       shape: BoxShape.circle,
+                                            //       color: greenLight,
+                                            //     ),
+                                            //     child: Padding(
+                                            //       padding:
+                                            //           const EdgeInsets.all(4),
+                                            //       child: Icon(
+                                            //         Icons.edit,
+                                            //         color: Colors.white,
+                                            //         size: 10,
+                                            //       ),
+                                            //     ),
+                                            //   ),
+                                            // )
                                           ],
                                         ),
                                       ),
