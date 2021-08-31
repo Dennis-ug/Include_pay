@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:includepay/Screens/Otp/otp.dart';
 import 'package:includepay/Screens/baseScreen/mainBase.dart';
+import 'package:includepay/tools/colors.dart';
 
 class SignInController extends GetxController {
   late String paswKey;
@@ -40,7 +41,7 @@ class SignInController extends GetxController {
   String? validatePhone(String? value) {
     if (value == "") {
       return "This field can't be empty";
-    } else if (!value!.startsWith("07")) {
+    } else if (!value!.startsWith("07") && value.length != 11) {
       return "Invalid number";
     }
   }
@@ -96,6 +97,7 @@ class SignInController extends GetxController {
         var cont = await response.stream.bytesToString();
         var body = jsonDecode(cont);
         print(body);
+        String _msg = body["message"];
         iSReady.value = false;
 
         switch (body["status"]) {
@@ -111,37 +113,15 @@ class SignInController extends GetxController {
             break;
           case 421:
             {
-              dialog(body["message"]);
+              dialog(_msg);
             }
             break;
           case 422:
             {
-              dialog(body["message"]);
+              dialog("$_msg\nTry creating an account \n this number");
             }
             break;
         }
-        //   if (body["message"] == "Login Successful") {
-        //     Get.to(() => BaseView());
-        //   } else if (body["message"] == "Invalid Password!") {
-        //     dialog(body["message"]);
-        //     // Get.to(() => ErrorView(
-        //     //       msg: body["message"],
-        //     //     ));
-        //   } else if (body["message"] == "Invalid Username") {
-        //     dialog(body["message"]);
-        //     // Get.to(() => ErrorView(
-
-        //     //       msg: body["message"],
-        //     //     ));
-        //     print("User name doesnt exit or incorect");
-        //   } else if (body["status"] == "421") {
-        //     dialog(body["message"]);
-        //     // Get.to(() => ErrorView(dialog(body["message"]);
-
-        //     //       msg: body["message"],
-        //     //     ));
-        //     print("User name doesnt exit or incorect");
-        //   }
       } else {
         print(response.reasonPhrase);
       }
@@ -151,10 +131,13 @@ class SignInController extends GetxController {
   }
 
   void dialog(String msg) {
-    Get.defaultDialog(
-      title: "Warning",
-      middleText: msg,
-      radius: 8,
-    );
+    Get.defaultDialog(title: "Warning", middleText: msg, radius: 8, actions: [
+      TextButton(
+          onPressed: () => Get.back(),
+          child: Text(
+            "Ok",
+            style: TextStyle(color: greenLight),
+          ))
+    ]);
   }
 }

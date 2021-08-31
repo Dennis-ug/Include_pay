@@ -238,8 +238,8 @@ class Body extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     children: [
-                      TextSpan(text: "Are you a new member? ", style: grenText),
-                      TextSpan(text: " Register", style: orangeText)
+                      TextSpan(text: "Are you a new ! ", style: grenText),
+                      TextSpan(text: " Create Account", style: orangeText)
                     ],
                   ),
                 ),

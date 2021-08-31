@@ -6,9 +6,7 @@ import 'package:http/http.dart' as http;
 
 class SavingsContro extends GetxController {
   @override
-  late String paswKey;
-  late String phoneNum;
-  final GlobalKey<FormState> savingDepositings = GlobalKey<FormState>();
+  final GlobalKey<FormState> savingDepositingsForm = GlobalKey<FormState>();
   late TextEditingController saconame, phoneNumber, accountNumaber, amount;
   var iSReady = false.obs;
   void onInit() {
@@ -25,31 +23,44 @@ class SavingsContro extends GetxController {
     super.onReady();
   }
 
+  @override
+  void dispose() {
+    saconame.dispose();
+    phoneNumber.dispose();
+    accountNumaber.dispose();
+    amount.dispose();
+    super.dispose();
+  }
+
   Future deposit() async {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Cookie': 'PHPSESSID=78bf56f55656e140c02fab0318fe15d1'
-    };
-    var request = http.Request(
-        'POST', Uri.parse('https://sacco.irembofinance.com/API/payment/'));
-    request.body = json.encode({
-      "account": 2,
-      "sacco": 7,
-      "contact": "0770963649",
-      "amount": 1000,
-      "notes": "School fees"
-    });
-    request.headers.addAll(headers);
+    print("Starting");
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+        'Cookie': 'PHPSESSID=4150e94570d18faea2ee188328cb6ee2'
+      };
+      var request = http.Request(
+        'POST',
+        Uri.parse('https://sacco.irembofinance.com/API/payment/'),
+      );
+      request.body = json.encode({
+        "account": 2,
+        "sacco": 7,
+        "contact": "0770963649",
+        "amount": 1000,
+        "notes": "School fees"
+      });
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
-      var cont = await response.stream.bytesToString();
-      var body = jsonDecode(cont);
-      print(body);
-      print(await response.stream.bytesToString());
-    } else {
-      print(response.reasonPhrase);
+      if (response.statusCode == 200) {
+        print(await response.stream.bytesToString());
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      print("The error is $e");
     }
   }
 }

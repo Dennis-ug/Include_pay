@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'Screens/Otp/otp.dart';
 import 'Screens/intro/intro.dart';
 
 void main() {
@@ -22,7 +23,9 @@ class IncludePay extends StatelessWidget {
           bodyText1: TextStyle(fontFamily: " Poppins-reg"),
         ),
       ),
-      home: Intro(),
+      home:
+          // OptView()
+          Intro(),
     );
   }
 }

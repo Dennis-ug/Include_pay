@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Success/Succees.dart';
+import 'package:includepay/Screens/services/Savings/savingController.dart';
 import '/tools/colors.dart';
 import '/tools/textStyles.dart';
 import '/tools/widgets.dart';
 import 'package:get/get.dart';
 
 class Savings extends StatelessWidget {
-  const Savings({Key? key}) : super(key: key);
+  Savings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class Savings extends StatelessWidget {
 }
 
 class SavingsViews extends StatelessWidget {
-  const SavingsViews({Key? key}) : super(key: key);
-
+  SavingsViews({Key? key}) : super(key: key);
+  final _contro = Get.put(SavingsContro());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,6 +46,7 @@ class SavingsViews extends StatelessWidget {
                     ),
                     dv,
                     Form(
+                      key: _contro.savingDepositingsForm,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -267,7 +268,8 @@ class SavingsViews extends StatelessWidget {
                           MaterialButton(
                             color: greenLight,
                             onPressed: () {
-                              Get.to(Succees());
+                              _contro.deposit();
+                              // Get.to(Succees());
                             },
                             child: Text(
                               "Save",
