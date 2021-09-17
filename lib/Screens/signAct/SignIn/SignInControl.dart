@@ -14,6 +14,7 @@ class SignInController extends GetxController {
   final GlobalKey<FormState> signInForm = GlobalKey<FormState>();
   late TextEditingController phoneController, passwordController;
   var iSReady = false.obs;
+  var isNotVissible = true.obs;
   @override
   void onInit() {
     phoneController = TextEditingController();
@@ -91,7 +92,8 @@ class SignInController extends GetxController {
       );
       request.headers.addAll(headers);
 
-      http.StreamedResponse response = await request.send();
+      http.StreamedResponse response =
+          await request.send().timeout(Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         var cont = await response.stream.bytesToString();
@@ -123,10 +125,21 @@ class SignInController extends GetxController {
             break;
         }
       } else {
+        iSReady.value = false;
         print(response.reasonPhrase);
       }
     } catch (e) {
-      print(e);
+      iSReady.value = false;
+      print("Failed due to $e");
+      dialog("$e");
+    }
+  }
+
+  void visi() {
+    if (!isNotVissible.value) {
+      isNotVissible.value = true;
+    } else {
+      isNotVissible.value = false;
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/route_manager.dart';
 import 'package:includepay/Screens/signAct/SignIn/SignIn.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -66,9 +67,10 @@ class IntroWig extends StatelessWidget {
                   alignment: Alignment.center,
                 ),
                 decoration: pageDecoration.copyWith(
+                  bodyAlignment: Alignment.bottomCenter,
                   contentMargin: const EdgeInsets.symmetric(horizontal: 16),
                   fullScreen: true,
-                  bodyFlex: 2,
+                  bodyFlex: 01,
                   imageFlex: 1,
                 ),
               ),

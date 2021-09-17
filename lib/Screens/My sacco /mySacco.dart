@@ -19,7 +19,7 @@ class MySaccoView extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: Colors.white,
         title: Text(
-          "Agape Sacco",
+          "My Sacco",
           style: TextStyle(
             color: Colors.white,
           ),
@@ -39,137 +39,17 @@ class MySaccoView extends StatelessWidget {
                       child: Container(
                         height: context.height * 0.18,
                         width: context.width,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Profile summary",
-                              style: boldHeading,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 22,
+                            child: FaIcon(
+                              FontAwesomeIcons.solidUser,
+                              color: greenLight,
+                              size: 35,
                             ),
-                            Divider(
-                              thickness: 0.8,
-                              color: Colors.black26,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        child: Stack(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor: Colors.white,
-                                              radius: 22,
-                                              child: FaIcon(
-                                                FontAwesomeIcons.solidUser,
-                                                color: greenLight,
-                                                size: 35,
-                                              ),
-                                            ),
-                                            // Positioned(
-                                            //   left: 26,
-                                            //   top: 26,
-                                            //   child: Container(
-                                            //     decoration: BoxDecoration(
-                                            //       shape: BoxShape.circle,
-                                            //       color: greenLight,
-                                            //     ),
-                                            //     child: Padding(
-                                            //       padding:
-                                            //           const EdgeInsets.all(4),
-                                            //       child: Icon(
-                                            //         Icons.edit,
-                                            //         color: Colors.white,
-                                            //         size: 10,
-                                            //       ),
-                                            //     ),
-                                            //   ),
-                                            // )
-                                          ],
-                                        ),
-                                      ),
-                                      Text("John M")
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: context.width * 0.09,
-                                  ),
-                                  Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: "Account Number:\n",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text:
-                                                    "Account Bal:            ",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: context.width * 0.1,
-                                  ),
-                                  Container(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: "25845856\n",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        FittedBox(
-                                          child: RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: "UGX 20,520",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                          ),
                         ),
                       ),
                     ),

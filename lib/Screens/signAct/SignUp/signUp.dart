@@ -30,15 +30,17 @@ class Body extends StatelessWidget {
       height: context.height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          colorFilter:
-              ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
-          image: AssetImage("assets/screen2.jpg"),
+          // colorFilter:
+          //     ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+          image: AssetImage("assets/signup.jpg"),
           fit: BoxFit.cover,
         ),
       ),
       child: SingleChildScrollView(
+        reverse: true,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding:
+              const EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -49,7 +51,7 @@ class Body extends StatelessWidget {
                     "Create Account",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 40,
                     ),
                   ),
                 ],
@@ -69,10 +71,11 @@ class Body extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: FaIcon(
                             FontAwesomeIcons.user,
                             color: greenLight,
+                            size: 20,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
@@ -94,9 +97,9 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         labelText: "Name",
-                        labelStyle: TextStyle(color: greenLight),
                         hintText: "Enter your name please",
-                        hintStyle: hintStyle,
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: greenLight),
                       ),
                       validator: (String? value) {
                         return contro.validateName(value);
@@ -113,10 +116,11 @@ class Body extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: FaIcon(
-                            FontAwesomeIcons.user,
+                            FontAwesomeIcons.envelope,
                             color: greenLight,
+                            size: 20,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
@@ -138,9 +142,9 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         labelText: "Email",
-                        labelStyle: TextStyle(color: greenLight),
                         hintText: "Enter your email please",
-                        hintStyle: hintStyle,
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: greenLight),
                       ),
                       validator: (String? value) {
                         return contro.validateEmail(value);
@@ -158,10 +162,11 @@ class Body extends StatelessWidget {
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         prefixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 13),
                           child: FaIcon(
                             FontAwesomeIcons.phoneAlt,
                             color: greenLight,
+                            size: 20,
                           ),
                         ),
                         focusedBorder: UnderlineInputBorder(
@@ -183,9 +188,10 @@ class Body extends StatelessWidget {
                           ),
                         ),
                         labelText: "Phone Number",
-                        labelStyle: TextStyle(color: greenLight),
                         hintText: "Enter Phone Number",
-                        hintStyle: hintStyle,
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: greenLight),
+                        helperStyle: TextStyle(color: Colors.white),
                       ),
                       onSaved: (value) {
                         contro.phone = value!;
@@ -194,107 +200,125 @@ class Body extends StatelessWidget {
                         return contro.validatePhone(value);
                       },
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: contro.passwordController,
-                      obscureText: true,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: FaIcon(
-                            FontAwesomeIcons.lock,
-                            color: greenLight,
+                    Obx(
+                      () => TextFormField(
+                        style: TextStyle(color: Colors.white),
+                        controller: contro.passwordController,
+                        obscureText: contro.isNotVissible.value,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(top: 13),
+                            child: FaIcon(
+                              FontAwesomeIcons.lock,
+                              color: greenLight,
+                              size: 20,
+                            ),
                           ),
-                        ),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: FaIcon(
-                            FontAwesomeIcons.solidEyeSlash,
-                            color: greenLight,
+                          suffixIcon: GestureDetector(
+                            onTap: contro.visi,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: FaIcon(
+                                contro.isNotVissible.value
+                                    ? FontAwesomeIcons.eye
+                                    : FontAwesomeIcons.eyeSlash,
+                                color: greenLight,
+                                size: 20,
+                              ),
+                            ),
                           ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textBoarderColor,
-                            width: 1,
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: textBoarderColor,
+                              width: 1,
+                            ),
                           ),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textBoarderColor,
-                            width: 1,
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: textBoarderColor,
+                              width: 1,
+                            ),
                           ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: greenLight,
-                            width: 1,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: greenLight,
+                              width: 1,
+                            ),
                           ),
+                          labelText: "Password",
+                          hintText: "Enter your password please",
+                          labelStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: greenLight),
                         ),
-                        labelText: "Password",
-                        labelStyle: TextStyle(color: greenLight),
-                        hintText: "Enter your password please",
-                        hintStyle: hintStyle,
+                        validator: (String? value) {
+                          return contro.validatePassword(value);
+                        },
+                        onSaved: (String? value) {
+                          contro.paswKey = value!;
+                          print(value);
+                        },
                       ),
-                      validator: (String? value) {
-                        return contro.validatePassword(value);
-                      },
-                      onSaved: (String? value) {
-                        contro.paswKey = value!;
-                        print(value);
-                      },
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: contro.confirmPasswordt,
-                      obscureText: true,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: FaIcon(
-                            FontAwesomeIcons.lock,
-                            color: greenLight,
+                    Obx(
+                      () => TextFormField(
+                        style: TextStyle(color: Colors.white),
+                        controller: contro.confirmPasswordt,
+                        obscureText: contro.isNotVissible.value,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(top: 13),
+                            child: FaIcon(
+                              FontAwesomeIcons.lock,
+                              color: greenLight,
+                              size: 20,
+                            ),
                           ),
-                        ),
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: FaIcon(
-                            FontAwesomeIcons.solidEyeSlash,
-                            color: greenLight,
+                          suffixIcon: GestureDetector(
+                            onTap: contro.visi,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: FaIcon(
+                                contro.isNotVissible.value
+                                    ? FontAwesomeIcons.eye
+                                    : FontAwesomeIcons.eyeSlash,
+                                color: greenLight,
+                                size: 20,
+                              ),
+                            ),
                           ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textBoarderColor,
-                            width: 1,
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: textBoarderColor,
+                              width: 1,
+                            ),
                           ),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textBoarderColor,
-                            width: 1,
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: textBoarderColor,
+                              width: 1,
+                            ),
                           ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: greenLight,
-                            width: 1,
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: greenLight,
+                              width: 1,
+                            ),
                           ),
+                          labelText: "Confirm Password",
+                          hintText: "Enter your password please",
+                          labelStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: greenLight),
                         ),
-                        labelText: "Confirm Password",
-                        labelStyle: TextStyle(color: greenLight),
-                        hintText: "Enter your password please",
-                        hintStyle: hintStyle,
+                        validator: (String? value) {
+                          return contro.confirmPassword(value);
+                        },
+                        onSaved: (String? value) {
+                          //contro.paswKey = value!;
+                          print("Confirmed password $value");
+                        },
                       ),
-                      validator: (String? value) {
-                        return contro.confirmPassword(value);
-                      },
-                      onSaved: (String? value) {
-                        //contro.paswKey = value!;
-                        print("Confirmed password $value");
-                      },
                     )
                   ],
                 ),
@@ -304,6 +328,8 @@ class Body extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  FocusScope.of(context).unfocus();
+
                   contro.validate();
                   if (contro.validate() == "correct") {
                     contro.signUp();
@@ -331,21 +357,22 @@ class Body extends StatelessWidget {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(child: SizedBox()),
-                  Text(
-                    "Already registered?  ",
-                    style: orangeText,
-                  ),
                   GestureDetector(
                     onTap: () {
                       Get.back();
                     },
-                    child: Text(
-                      "SignIn",
-                      style: TextStyle(color: Colors.white),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "Already registered?  ", style: grenText),
+                          TextSpan(text: " Sign In ", style: orangeText)
+                        ],
+                      ),
                     ),
-                  )
+                  ),
                 ],
               )
             ],
@@ -357,14 +384,18 @@ class Body extends StatelessWidget {
 
   void _dialog({required String msg, sc}) {
     Get.defaultDialog(
-        title: "Warning",
+        title: "ERROR",
         middleText: "$msg \n ",
         radius: 8,
+        middleTextStyle: TextStyle(fontSize: 20),
         confirm: TextButton(
           onPressed: () {
             Get.back();
           },
-          child: Text("Ok"),
+          child: Text(
+            "OKAY",
+            style: TextStyle(fontSize: 20),
+          ),
         ));
   }
 }

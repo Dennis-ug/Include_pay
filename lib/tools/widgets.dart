@@ -17,15 +17,15 @@ Container iconHolder({
           padding: const EdgeInsets.only(bottom: 8.0),
           child: FaIcon(
             icon,
-            semanticLabel: "My Saco",
+            // semanticLabel: "My Saco",
             color: greenLight,
-            size: 22,
+            size: 30,
           ),
         ),
         //Expanded(child: SizedBox()),
         Text(
           lebel,
-          style: TextStyle(color: Colors.black, fontSize: 8),
+          style: TextStyle(color: Colors.black, fontSize: 12),
         )
       ],
     ),

@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:includepay/Screens/Otp/otp.dart';
-import 'package:includepay/Screens/signAct/SignIn/SignIn.dart';
 
 class SignUpController extends GetxController {
   late String name;
   late String email;
   late String phone;
   late String paswKey;
+  var isNotVissible = true.obs;
 
   final GlobalKey<FormState> signUpForm = GlobalKey<FormState>();
   late TextEditingController phoneController,
@@ -114,42 +114,60 @@ class SignUpController extends GetxController {
   }
 
   Future signUp() async {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Cookie': 'PHPSESSID=78bf56f55656e140c02fab0318fe15d1'
-    };
-    var request =
-        http.Request('POST', Uri.parse('https://wallet.ahuriire.com/signup/'));
-    request.body = json.encode({
-      "name": "$name",
-      "email": "$email",
-      "phone": "$phone",
-      "password": "$paswKey"
-    });
-    request.headers.addAll(headers);
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+        'Cookie': 'PHPSESSID=78bf56f55656e140c02fab0318fe15d1'
+      };
+      var request = http.Request(
+          'POST', Uri.parse('https://wallet.ahuriire.com/signup/'));
+      request.body = json.encode({
+        "phone": "$phone",
+        "name": "$name",
+        "email": "$email",
+        "password": "$paswKey"
+      });
+      request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
+      http.StreamedResponse response =
+          await request.send().timeout(Duration(seconds: 10));
 
-    if (response.statusCode == 200) {
-      var res = await response.stream.bytesToString();
-      print(res);
-      var body = jsonDecode(res);
-      int _statusCode = body["status"];
-      String _message = body["message"];
-      switch (_statusCode) {
-        case 201:
-          {
-            Get.off(() => OptView());
-          }
-          break;
+      if (response.statusCode == 200) {
+        var res = await response.stream.bytesToString();
+        print(res);
+        var body = jsonDecode(res);
+        int _statusCode = body["status"];
+        String _message = body["message"];
+        switch (_statusCode) {
+          case 201:
+            {
+              Get.off(() => OptView());
+            }
+            break;
 
-        case 420:
-          {
-            _dialog(msg: _message, sc: _statusCode);
-          }
+          case 420:
+            {
+              _dialog(msg: _message, sc: _statusCode);
+            }
+            break;
+          case 421:
+            {
+              _dialog(msg: _message, sc: _statusCode);
+            }
+        }
+      } else {
+        print(response.reasonPhrase);
       }
+    } catch (e) {
+      _dialog(msg: "$e");
+    }
+  }
+
+  void visi() {
+    if (!isNotVissible.value) {
+      isNotVissible.value = true;
     } else {
-      print(response.reasonPhrase);
+      isNotVissible.value = false;
     }
   }
 

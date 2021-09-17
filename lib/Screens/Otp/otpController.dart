@@ -63,46 +63,46 @@ class OtpController extends GetxController {
               // Get.to(() => BaseView());
             }
             break;
-          // case 202:
-          //   {
-          //     Get.to(() => OptView());
-          //   }
-          //   break;
-          // case 421:
-          //   {
-          //     _dialog(body["message"]);
-          //   }
-          //   break;
-          // case 422:
-          //   {
-          //     _dialog(body["message"]);
-          //   }
-          //   break;
+          case 202:
+            {
+              // Get.to(() => OptView());
+            }
+            break;
+          case 426:
+            {
+              // _dialog(body["message"]);
+            }
+            break;
+          case 422:
+            {
+              // _dialog(body["message"]);
+            }
+            break;
         }
         print(await response.stream.bytesToString());
       } else {
         print(response.reasonPhrase);
       }
-      // var headers = {
-      //   'Content-Type': 'application/json',
-      //   'Cookie': 'PHPSESSID=5ed627c385e2ef666e927ad4de45fedf'
-      // };
-      // var request = http.Request(
-      //     'POST', Uri.parse('https://wallet.ahuriire.com/verification/'));
-      // request.body = json.encode({"otp": "97707"});
-      // request.headers.addAll(headers);
-
-      // http.StreamedResponse response = await request.send();
-
-      // if (response.statusCode == 200) {
-      //   print(await response.stream.bytesToString());
-      //   print("submited value is $value");
-      //   // isReady.value = true;
-      //   // isSubmmiting.value = true;
-      //
-      // } else {
-      //   print(response.reasonPhrase);
-      // }
     } catch (e) {}
+  }
+
+  void _dialog({required String msg, sc}) {
+    Get.defaultDialog(
+        title: "Warning",
+        middleText: "$msg \n ",
+        radius: 8,
+        confirm: TextButton(
+          onPressed: () {
+            switch (sc) {
+              case 420:
+                {
+                  // phoneController.text = "";
+                }
+                break;
+            }
+            Get.back();
+          },
+          child: Text("Ok"),
+        ));
   }
 }
