@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/route_manager.dart';
 import 'package:includepay/Screens/signAct/SignIn/SignIn.dart';
+import 'package:includepay/constants/constants.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'introdata/introdata.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Intro extends StatelessWidget {
   const Intro({Key? key}) : super(key: key);
@@ -76,8 +78,12 @@ class IntroWig extends StatelessWidget {
               ),
             )
             .toList(),
-        onDone: () {
-          Get.off(() => SignIn());
+        onDone: () async {
+          SharedPreferences _pref = await SharedPreferences.getInstance();
+          _pref.setBool(slideViewed, true);
+          Get.off(
+            () => SignIn(),
+          );
         },
         showSkipButton: true,
         skipFlex: 0,

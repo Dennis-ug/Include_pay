@@ -18,7 +18,7 @@ Container iconHolder({
           child: FaIcon(
             icon,
             // semanticLabel: "My Saco",
-            color: greenLight,
+            color: Color(0x79737373),
             size: 30,
           ),
         ),

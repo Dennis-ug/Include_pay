@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:includepay/Screens/services/Success/Succees.dart';
 import 'package:includepay/tools/colors.dart';
@@ -11,6 +13,7 @@ class SavingsContro extends GetxController {
   @override
   final GlobalKey<FormState> savingDepositingsForm = GlobalKey<FormState>();
   var isLoading = false.obs;
+  late String _accountId;
   late TextEditingController saconame,
       phoneNumber,
       accountNumaber,
@@ -68,9 +71,62 @@ class SavingsContro extends GetxController {
       return;
     } else {
       savingDepositingsForm.currentState!.save();
-      deposit();
+      accountValidate();
 
       return "Correct";
+    }
+  }
+
+  Future accountValidate() async {
+    try {
+      isLoading.value = true;
+      var headers = {'Cookie': 'PHPSESSID=4150e94570d18faea2ee188328cb6ee2'};
+      var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://sacco.irembofinance.com/API/check-account/?saccoid=$scoId&account=${accountNumaber.text}'),
+      );
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response =
+          await request.send().timeout(Duration(seconds: 10));
+
+      if (response.statusCode == 200) {
+        isLoading.value = false;
+        var _body = jsonDecode(
+          await response.stream.bytesToString(),
+        );
+        _accountId = _body["accountid"];
+        print(_body);
+
+        Get.defaultDialog(
+          title: "Info",
+          middleText:
+              "You are depositing Ush ${amount.text} to the account of ${_body["fname"]} ${_body["lname"]}'",
+          radius: 8,
+          actions: [
+            TextButton(
+              onPressed: () {
+                isLoading.value = false;
+                deposit();
+                Get.back();
+              },
+              child: Text(
+                "Ok",
+                style: TextStyle(
+                  color: greenLight,
+                ),
+              ),
+            )
+          ],
+        );
+      } else {
+        print(response.reasonPhrase);
+      }
+    } catch (e) {
+      dialog("$e");
+      isLoading.value = false;
     }
   }
 
@@ -87,7 +143,7 @@ class SavingsContro extends GetxController {
         Uri.parse('https://sacco.irembofinance.com/API/payment/'),
       );
       request.body = json.encode({
-        "account": accountNumaber.text,
+        "account": _accountId,
         "sacco": scoId,
         "contact": phoneNumber.text,
         "amount": amount.text,
@@ -105,6 +161,11 @@ class SavingsContro extends GetxController {
         } else {
           isLoading.value = false;
           Get.to(() => Succees());
+          phoneNumber.clear();
+          accountNumaber.clear();
+          amount.clear();
+          reason.clear();
+          print(body);
         }
         print(
             "${accountNumaber.text},$scoId,${phoneNumber.text},${amount.text},${reason.text}");
@@ -119,17 +180,22 @@ class SavingsContro extends GetxController {
   }
 
   void dialog(String msg) {
-    Get.defaultDialog(title: "Warning", middleText: msg, radius: 8, actions: [
-      TextButton(
-        onPressed: () {
-          isLoading.value = false;
-          Get.back();
-        },
-        child: Text(
-          "Ok",
-          style: TextStyle(color: greenLight),
-        ),
-      )
-    ]);
+    Get.defaultDialog(
+      title: "Warning",
+      middleText: msg,
+      radius: 8,
+      actions: [
+        TextButton(
+          onPressed: () {
+            isLoading.value = false;
+            Get.back();
+          },
+          child: Text(
+            "Ok",
+            style: TextStyle(color: greenLight),
+          ),
+        )
+      ],
+    );
   }
 }

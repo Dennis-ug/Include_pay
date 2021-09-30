@@ -94,50 +94,17 @@ class SavingsViews extends StatelessWidget {
                                 return await saccoSearch(pattern);
                               },
                               onSuggestionSelected: (data) {
-                                print(data);
+                                // print(data);
                                 _contro.saconame.text = data.name;
                                 _contro.scoId = data.id;
                               },
                               itemBuilder: (context, Sacco? data) {
                                 return ListTile(
                                   title: Text(data!.name),
-                                  subtitle: Text(data.id),
+                                  // subtitle: Text(data.id),
                                 );
                               },
                             ),
-                            // TextFormField(
-                            //   controller: _contro.reason,
-                            //   style: TextStyle(color: Colors.white),
-                            //   // controller: contro.passwordController,
-
-                            //   textInputAction: TextInputAction.next,
-                            //   decoration: InputDecoration(
-                            //     focusedBorder: UnderlineInputBorder(
-                            //       borderSide: BorderSide(
-                            //         color: textBoarderColor,
-                            //         width: 0.5,
-                            //       ),
-                            //     ),
-
-                            //     enabledBorder: UnderlineInputBorder(
-                            //       borderSide: BorderSide(
-                            //         color: textBoarderColor,
-                            //         width: 0.5,
-                            //       ),
-                            //     ),
-                            //     // labelText: "Password",
-                            //     labelStyle: TextStyle(color: textBoarderColor),
-                            //     hintText: "Enter phone number",
-                            //     hintStyle: hintStyle,
-                            //   ),
-                            //   validator: (String? value) {
-                            //     return _contro.validatePhone(value);
-                            //   },
-                            //   onSaved: (String? value) {
-                            //     // contro.paswKey = value!;
-                            //     // print(value);
-                            //   },
-                            // ),
                             TextFormField(
                               controller: _contro.accountNumaber,
                               keyboardType: TextInputType.number,
@@ -238,7 +205,7 @@ class SavingsViews extends StatelessWidget {
                             ),
                             TextFormField(
                               controller: _contro.reason,
-                              textInputAction: TextInputAction.next,
+                              textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
@@ -278,7 +245,7 @@ class SavingsViews extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   MaterialButton(
-                                    color: themeOrange,
+                                    color: Color(0xFFF9C404),
                                     onPressed: () {
                                       Get.back();
                                     },

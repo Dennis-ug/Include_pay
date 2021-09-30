@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:includepay/Screens/services/Savings/savingController.dart';
 import 'package:includepay/tools/colors.dart';
 import 'package:get/get.dart';
 
 class Succees extends StatelessWidget {
-  const Succees({Key? key}) : super(key: key);
+  Succees({Key? key}) : super(key: key);
+  // final _contro = Get.find(SavingsContro(null));
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class Succees extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(30),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FaIcon(
                   FontAwesomeIcons.solidCheckCircle,
@@ -22,15 +25,15 @@ class Succees extends StatelessWidget {
                 ),
                 Text("\n\nRequest Submited\n"),
                 Text(
-                  """Thank you for Saving with us. Your loan request has been received and is pending approval. Onceapproved, you will be nofitied.""",
+                  """Thank you for Saving with us""",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: context.height * 0.4,
-                ),
+                // SizedBox(
+                //   height: context.height * 0.4,
+                // ),
                 MaterialButton(
                   minWidth: 400,
-                  color: themeOrange,
+                  color: Color(0xFFF9C404),
                   onPressed: () {
                     Get.back();
                   },

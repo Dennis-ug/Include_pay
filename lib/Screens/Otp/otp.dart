@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:includepay/Screens/Otp/otpController.dart';
 import 'package:includepay/Screens/baseScreen/mainBase.dart';
 import 'package:includepay/tools/colors.dart';
-import 'package:includepay/tools/textStyles.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class OptView extends StatelessWidget {

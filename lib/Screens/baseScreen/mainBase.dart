@@ -4,8 +4,6 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '/tools/widgets.dart';
-import '/Screens/My%20sacco%20/mySacco.dart';
 import '/tools/colors.dart';
 import '/Screens/baseScreen/baseController.dart';
 import 'pages/homePage.dart';
@@ -18,7 +16,7 @@ class BaseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFC3C3C3),
+      backgroundColor: Color(0xFFF8F7F7),
       body: SizedBox.expand(
           child: PageView(
         physics: new NeverScrollableScrollPhysics(),
@@ -29,76 +27,73 @@ class BaseView extends StatelessWidget {
           HomePage(screen: _screen),
           //Profile panel
           Container(
-            child: Column(
-              children: [
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 50,
-                          child: FaIcon(
-                            FontAwesomeIcons.solidUser,
-                            color: greenLight,
-                            size: 50,
-                          ),
-                        ),
-                        Positioned(
-                          left: 70,
-                          top: 70,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: greenLight,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text("Name"), Text("data")],
-                    ),
-                  ),
-                )
-              ],
+              child: Center(
+            child: Image.asset("assets/coming-soon.png"),
+          )
+              // Column(
+              //   children: [
+              //     Container(
+              //       child: Padding(
+              //         padding: const EdgeInsets.only(top: 30),
+              //         child: Stack(
+              //           children: [
+              //             CircleAvatar(
+              //               backgroundColor: Colors.white,
+              //               radius: 50,
+              //               child: FaIcon(
+              //                 FontAwesomeIcons.solidUser,
+              //                 color: greenLight,
+              //                 size: 50,
+              //               ),
+              //             ),
+              //             Positioned(
+              //               left: 70,
+              //               top: 70,
+              //               child: Container(
+              //                 decoration: BoxDecoration(
+              //                   shape: BoxShape.circle,
+              //                   color: greenLight,
+              //                 ),
+              //                 child: Padding(
+              //                   padding: const EdgeInsets.all(4),
+              //                   child: Icon(
+              //                     Icons.edit,
+              //                     color: Colors.white,
+              //                     size: 20,
+              //                   ),
+              //                 ),
+              //               ),
+              //             )
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.symmetric(horizontal: 20),
+              //       child: Container(
+              //         child: Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [Text("Name"), Text("data")],
+              //         ),
+              //       ),
+              //     )
+              //   ],
+              // // ),
+              // child: Center(
+              //   child: Text(
+              //     'Profile Comming soon',
+              //     style: TextStyle(fontSize: 30),
+              //   ),
+              // ),
+              ),
+          Container(
+            child: Center(
+              child: Image.asset("assets/coming-soon.png"),
             ),
-            // child: Center(
-            //   child: Text(
-            //     'Profile Comming soon',
-            //     style: TextStyle(fontSize: 30),
-            //   ),
-            // ),
           ),
           Container(
             child: Center(
-              child: Text(
-                'Notification coming soon',
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text(
-                'Setting coming soon',
-                style: TextStyle(fontSize: 30),
-              ),
+              child: Image.asset("assets/coming-soon.png"),
             ),
           ),
           Container(
@@ -135,14 +130,6 @@ class BaseView extends StatelessWidget {
               activeColor: greenLight,
               textAlign: TextAlign.center,
             ),
-            // BottomNavyBarItem(
-            //   icon: FaIcon(FontAwesomeIcons.phoneAlt),
-            //   title: Text(
-            //     'Support',
-            //   ),
-            //   activeColor: greenLight,
-            //   textAlign: TextAlign.center,
-            // ),
             BottomNavyBarItem(
               icon: FaIcon(FontAwesomeIcons.solidBell),
               title: Text('Notification'),

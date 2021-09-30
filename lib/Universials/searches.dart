@@ -18,7 +18,13 @@ Future saccoSearch(String q) async {
       var body = jsonDecode(await response.stream.bytesToString());
       SaccoSearch saccoslist = SaccoSearch.fromJson(body);
       List<Sacco> list = saccoslist.saccos;
-      return list.where((sco) => sco.name.startsWith(q)).toList();
+      return list
+          .where(
+            (sco) => sco.name.toUpperCase().startsWith(
+                  q.toUpperCase(),
+                ),
+          )
+          .toList();
     } else {
       print(response.reasonPhrase);
     }

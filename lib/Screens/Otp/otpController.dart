@@ -86,23 +86,23 @@ class OtpController extends GetxController {
     } catch (e) {}
   }
 
-  void _dialog({required String msg, sc}) {
-    Get.defaultDialog(
-        title: "Warning",
-        middleText: "$msg \n ",
-        radius: 8,
-        confirm: TextButton(
-          onPressed: () {
-            switch (sc) {
-              case 420:
-                {
-                  // phoneController.text = "";
-                }
-                break;
-            }
-            Get.back();
-          },
-          child: Text("Ok"),
-        ));
-  }
+  // void _dialog({required String msg, sc}) {
+  //   Get.defaultDialog(
+  //       title: "Warning",
+  //       middleText: "$msg \n ",
+  //       radius: 8,
+  //       confirm: TextButton(
+  //         onPressed: () {
+  //           switch (sc) {
+  //             case 420:
+  //               {
+  //                 // phoneController.text = "";
+  //               }
+  //               break;
+  //           }
+  //           Get.back();
+  //         },
+  //         child: Text("Ok"),
+  //       ));
+  // }
 }

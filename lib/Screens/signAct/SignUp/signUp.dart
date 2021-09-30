@@ -341,16 +341,22 @@ class Body extends StatelessWidget {
 
                   //contro.signUp();
                 },
-                child: Container(
-                  child: Center(
-                    child: Text("Register"),
-                  ),
-                  width: double.maxFinite,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: greenLight,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                child: Obx(
+                  () => !contro.isLoading.value
+                      ? Container(
+                          child: Center(
+                            child: Text("Register"),
+                          ),
+                          width: double.maxFinite,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: greenLight,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        )
+                      : CircularProgressIndicator(
+                          color: greenLight,
+                        ),
                 ),
               ),
               SizedBox(

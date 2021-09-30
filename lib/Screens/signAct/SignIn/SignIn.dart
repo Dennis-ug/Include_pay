@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:includepay/Screens/Otp/otp.dart';
-import 'package:includepay/Screens/baseScreen/mainBase.dart';
+// import 'package:includepay/Screens/Otp/otp.dart';
+// import 'package:includepay/Screens/baseScreen/mainBase.dart';
 import 'package:includepay/Screens/signAct/SignUp/signUp.dart';
 import 'package:includepay/tools/colors.dart';
 import '/tools/colors.dart';
@@ -200,45 +200,21 @@ class Body extends StatelessWidget {
                           .dialog("Please Fill in the \n reuired information");
                     }
                   },
-                  child: Container(
-                    child: Center(
-                      child: contro.iSReady.value == false
-                          ? Text("Login")
-                          : Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 25,
-                                        width: 25,
-                                        child: CircularProgressIndicator(
-                                          color: Colors.white,
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 40),
-                                      child: Text(
-                                        "Loading....",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                    ),
-                    width: double.maxFinite,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: greenLight,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
+                  child: contro.iSReady.value == false
+                      ? Container(
+                          child: Center(
+                            child: Text("Login"),
+                          ),
+                          width: double.maxFinite,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: greenLight,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        )
+                      : CircularProgressIndicator(
+                          color: greenLight,
+                        ),
                 ),
               ),
               SizedBox(

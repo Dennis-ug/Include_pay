@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:includepay/Screens/My%20sacco%20/mySacco.dart';
 import 'package:includepay/tools/colors.dart';
 import 'package:includepay/tools/widgets.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -16,6 +17,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double _hyt = context.height;
+
     return Container(
       height: double.infinity,
       // alignment: Alignment.topLeft,
@@ -34,51 +37,56 @@ class HomePage extends StatelessWidget {
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
                           child: SizedBox(
                             height: context.height * 0.14,
-                            child: FittedBox(
-                              child: Container(
-                                width: context.width * 0.3,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Welcome",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 20,
-                                          color: Color(0xFF737373),
-                                        )),
-                                    Text(
-                                      "What would you like to today?",
+                            child: Container(
+                              width: context.width * 0.7,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Welcome",
                                       style: TextStyle(
-                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 50,
                                         color: Color(0xFF737373),
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                      )),
+                                  Text(
+                                    "What would you like to today?",
+                                    style: TextStyle(
+                                      fontSize: _hyt * 0.022,
+                                      color: Color(0xFF737373),
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: greenLight,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: FaIcon(
-                              FontAwesomeIcons.solidBell,
-                              color: Colors.white,
-                              size: 40,
+                        Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: greenLight,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: FaIcon(
+                                  FontAwesomeIcons.solidBell,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: _hyt * 0.02,
+                            )
+                          ],
                         )
                       ],
                     ),
@@ -86,7 +94,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: context.height * 0.02,
+                height: context.height * 0.00001,
               ),
 
               Container(
@@ -94,8 +102,14 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 154,
-                      child: null,
+                      clipBehavior: Clip.antiAlias,
+                      width: context.width * 0.95,
+                      height: _hyt * 0.2567,
+                      child: Image(
+                        height: context.width * 0.95,
+                        image: AssetImage("assets/banner.jpg"),
+                        fit: BoxFit.cover,
+                      ),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5)),
@@ -111,60 +125,104 @@ class HomePage extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    "Get Started",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      // color: greenLight,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: Text(
+                                      "Get Started",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        // color: greenLight,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              Divider(
-                                thickness: 0.8,
-                                color: Colors.black26,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Divider(
+                                  thickness: 0.8,
+                                  color: Colors.black26,
+                                ),
                               ),
                               SizedBox(
                                 height: context.height * 0.01,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        print(context.height);
-                                        Get.to(() => MySaccoView());
-                                      },
-                                      child: FittedBox(
-                                        child: iconHolder(
-                                          icon: FontAwesomeIcons.moneyBillWave,
-                                          lebel: "My Sacco",
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          print(context.height);
+                                          Get.to(() => MySaccoView());
+                                        },
+                                        child: FittedBox(
+                                          child: iconHolder(
+                                            icon:
+                                                FontAwesomeIcons.moneyBillWave,
+                                            lebel: "My Sacco",
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    FittedBox(
-                                      child: iconHolder(
-                                        icon: FontAwesomeIcons.leaf,
-                                        lebel: "Farming",
+                                      TextButton(
+                                        onPressed: () {
+                                          CoolAlert.show(
+                                            backgroundColor: Color(0xFFF9C404),
+                                            confirmBtnColor: Color(0xFFF9C404),
+                                            context: context,
+                                            type: CoolAlertType.info,
+                                            text: "Service coming soon",
+                                          );
+                                        },
+                                        child: FittedBox(
+                                          child: iconHolder(
+                                            icon: FontAwesomeIcons.leaf,
+                                            lebel: "Farming",
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    FittedBox(
-                                      child: iconHolder(
-                                        icon: FontAwesomeIcons.shoppingCart,
-                                        lebel: "Shopping",
+                                      TextButton(
+                                        onPressed: () {
+                                          CoolAlert.show(
+                                            backgroundColor: Color(0xFFF9C404),
+                                            confirmBtnColor: Color(0xFFF9C404),
+                                            context: context,
+                                            type: CoolAlertType.info,
+                                            text: "Service coming soon",
+                                          );
+                                        },
+                                        child: FittedBox(
+                                          child: iconHolder(
+                                            icon: FontAwesomeIcons.shoppingCart,
+                                            lebel: "Shopping",
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    FittedBox(
-                                      child: iconHolder(
-                                        icon: FontAwesomeIcons.handHoldingHeart,
-                                        lebel: "Charity",
+                                      TextButton(
+                                        onPressed: () {
+                                          CoolAlert.show(
+                                            backgroundColor: Color(0xFFF9C404),
+                                            confirmBtnColor: Color(0xFFF9C404),
+                                            context: context,
+                                            type: CoolAlertType.info,
+                                            text: "Service coming soon",
+                                          );
+                                        },
+                                        child: FittedBox(
+                                          child: iconHolder(
+                                            icon: FontAwesomeIcons
+                                                .handHoldingHeart,
+                                            lebel: "Charity",
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -190,21 +248,19 @@ class HomePage extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Securely and conveniently access a wide range of online payment services",
+                          "Securely and conveniently access a wide range of online payment services.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 14,
+                            fontSize: 20,
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: 18.0),
                       child: Container(
-                        height: context.height < _screen
-                            ? context.height * 0.16
-                            : context.height * 0.2,
+                        height: context.height * 0.3,
                         width: double.infinity,
                         child: Column(
                           children: [
@@ -234,17 +290,29 @@ class HomePage extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Center(
-                                        child: FittedBox(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15),
-                                            child: iconHolder(
-                                              icon: FontAwesomeIcons.creditCard,
-                                              lebel: "Banking",
+                                    TextButton(
+                                      onPressed: () {
+                                        CoolAlert.show(
+                                          backgroundColor: Color(0xFFF9C404),
+                                          confirmBtnColor: Color(0xFFF9C404),
+                                          context: context,
+                                          type: CoolAlertType.info,
+                                          text: "Service coming soon",
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: Center(
+                                          child: FittedBox(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(18),
+                                              child: iconHolder(
+                                                icon:
+                                                    FontAwesomeIcons.creditCard,
+                                                lebel: "Banking",
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -253,17 +321,30 @@ class HomePage extends StatelessWidget {
                                     SizedBox(
                                       width: context.width * 0.1,
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Center(
-                                        child: FittedBox(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15),
-                                            child: iconHolder(
-                                              icon: FontAwesomeIcons.lightbulb,
-                                              lebel: "Utilities",
+                                    TextButton(
+                                      onPressed: () {
+                                        CoolAlert.show(
+                                          backgroundColor: Color(0xFFF9C404),
+                                          confirmBtnColor: Color(0xFFF9C404),
+                                          context: context,
+                                          type: CoolAlertType.info,
+                                          text: "Service coming soon",
+                                        );
+                                      },
+                                      child: Container(
+                                        //,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: Center(
+                                          child: FittedBox(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(20),
+                                              child: iconHolder(
+                                                icon:
+                                                    FontAwesomeIcons.lightbulb,
+                                                lebel: "Utilities",
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -272,17 +353,29 @@ class HomePage extends StatelessWidget {
                                     SizedBox(
                                       width: context.width * 0.1,
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Center(
-                                        child: FittedBox(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15),
-                                            child: iconHolder(
-                                              icon: FontAwesomeIcons.ticketAlt,
-                                              lebel: "Tickects",
+                                    TextButton(
+                                      onPressed: () {
+                                        CoolAlert.show(
+                                          backgroundColor: Color(0xFFF9C404),
+                                          confirmBtnColor: Color(0xFFF9C404),
+                                          context: context,
+                                          type: CoolAlertType.info,
+                                          text: "Service coming soon",
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: Center(
+                                          child: FittedBox(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(18),
+                                              child: iconHolder(
+                                                icon:
+                                                    FontAwesomeIcons.ticketAlt,
+                                                lebel: "Tickets",
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -291,36 +384,28 @@ class HomePage extends StatelessWidget {
                                     SizedBox(
                                       width: context.width * 0.1,
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Center(
-                                        child: FittedBox(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15),
-                                            child: iconHolder(
-                                              icon: FontAwesomeIcons.creditCard,
-                                              lebel: "Banking",
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: context.width * 0.04,
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
-                                      child: Center(
-                                        child: FittedBox(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15),
-                                            child: iconHolder(
-                                              icon: FontAwesomeIcons.school,
-                                              lebel: "School fees",
+                                    TextButton(
+                                      onPressed: () {
+                                        CoolAlert.show(
+                                          backgroundColor: Color(0xFFF9C404),
+                                          confirmBtnColor: Color(0xFFF9C404),
+                                          context: context,
+                                          type: CoolAlertType.info,
+                                          text: "Service coming soon",
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle),
+                                        child: Center(
+                                          child: FittedBox(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(15),
+                                              child: iconHolder(
+                                                icon: FontAwesomeIcons.school,
+                                                lebel: " Fees",
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -348,4 +433,18 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+  // void comeSoon(String msg) {
+  //   Get.defaultDialog(title: "Notice", middleText: msg, radius: 8, actions: [
+  //     TextButton(
+  //       onPressed: () {
+  //         isLoading.value = false;
+  //         Get.back();
+  //       },
+  //       child: Text(
+  //         "Ok",
+  //         style: TextStyle(color: greenLight),
+  //       ),
+  //     )
+  //   ]);
+  // }
 }

@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:includepay/Screens/Otp/otp.dart';
 import 'package:includepay/Screens/baseScreen/mainBase.dart';
+import 'package:includepay/constants/constants.dart';
 import 'package:includepay/tools/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInController extends GetxController {
   late String paswKey;
@@ -96,6 +100,7 @@ class SignInController extends GetxController {
           await request.send().timeout(Duration(seconds: 10));
 
       if (response.statusCode == 200) {
+        SharedPreferences _pref = await SharedPreferences.getInstance();
         var cont = await response.stream.bytesToString();
         var body = jsonDecode(cont);
         print(body);
@@ -106,6 +111,7 @@ class SignInController extends GetxController {
           case 201:
             {
               Get.to(() => BaseView());
+              _pref.setBool(userSignedIn, true);
             }
             break;
           case 202:
@@ -128,7 +134,26 @@ class SignInController extends GetxController {
         iSReady.value = false;
         print(response.reasonPhrase);
       }
-    } catch (e) {
+    } on SocketException {
+      iSReady.value = false;
+      dialog(
+        "Failed to connect to the server\n Please check your data connect",
+      );
+    } on TimeoutException {
+      dialog(
+        "System has taken log to respond\n This may be due to slow internet",
+      );
+    }
+    // on HandshakeException {
+
+    //   iSReady.value = false;
+    //   dialog(
+    //     "Procese interupted\n Try again later",
+    //   );
+    // }
+    catch (e) {
+      print(e);
+      // if (e == Exception.)
       iSReady.value = false;
       print("Failed due to $e");
       dialog("$e");

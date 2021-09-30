@@ -1,9 +1,7 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:includepay/Screens/services/Loan/loan.dart';
-import 'package:includepay/Screens/services/Transfer/transfer.dart';
-import 'package:includepay/Screens/services/Withdraw/withdraw.dart';
 import '../services/Savings/savinga.dart';
 import '/tools/textStyles.dart';
 import '/tools/widgets.dart';
@@ -90,7 +88,14 @@ class MySaccoView extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(WithDraw());
+                                  CoolAlert.show(
+                                    backgroundColor: Color(0xFFF9C404),
+                                    confirmBtnColor: Color(0xFFF9C404),
+                                    context: context,
+                                    type: CoolAlertType.info,
+                                    text: "Service coming soon",
+                                  );
+                                  // Get.to(WithDraw());
                                 },
                                 child: FittedBox(
                                   child: iconHolder(
@@ -101,7 +106,14 @@ class MySaccoView extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(Transfer());
+                                  CoolAlert.show(
+                                    backgroundColor: Color(0xFFF9C404),
+                                    confirmBtnColor: Color(0xFFF9C404),
+                                    context: context,
+                                    type: CoolAlertType.info,
+                                    text: "Service coming soon",
+                                  );
+                                  // Get.to(Transfer());
                                 },
                                 child: FittedBox(
                                   child: iconHolder(
@@ -112,7 +124,14 @@ class MySaccoView extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(Loan());
+                                  CoolAlert.show(
+                                    backgroundColor: Color(0xFFF9C404),
+                                    confirmBtnColor: Color(0xFFF9C404),
+                                    context: context,
+                                    type: CoolAlertType.info,
+                                    text: "Service coming soon",
+                                  );
+                                  // Get.to(Loan());
                                 },
                                 child: FittedBox(
                                   child: iconHolder(
@@ -129,90 +148,90 @@ class MySaccoView extends StatelessWidget {
                   ),
                 ),
               ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text("Recent Tranactions"),
-                      dv,
-                      DataTable(
-                        columns: [
-                          DataColumn(
-                            label: Text("Activity"),
-                          ),
-                          DataColumn(
-                            label: Text("Date"),
-                          ),
-                          DataColumn(
-                            numeric: true,
-                            label: Text("Amount"),
-                          ),
-                        ],
-                        rows: [
-                          DataRow(
-                            // color: ,
-                            cells: [
-                              DataCell(
-                                Text("Depost"),
-                              ),
-                              DataCell(
-                                Text("2/5/2010"),
-                              ),
-                              DataCell(
-                                Text("50,000"),
-                              ),
-                            ],
-                          ),
-                          DataRow(
-                            cells: [
-                              DataCell(
-                                Text("Withdraw"),
-                              ),
-                              DataCell(
-                                Text("2/5/2010"),
-                              ),
-                              DataCell(
-                                Text("20,000"),
-                              ),
-                            ],
-                          ),
-                          DataRow(
-                            cells: [
-                              DataCell(
-                                Text("Withdraw"),
-                              ),
-                              DataCell(
-                                Text("2/5/2010"),
-                              ),
-                              DataCell(
-                                Text("20,000"),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: SizedBox(),
-                          ),
-                          Icon(
-                            Icons.add,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            'More Details',
-                            style: TextStyle(
-                              color: Colors.blue,
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              )
+              // Card(
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Column(
+              //       children: [
+              //         Text("Recent Tranactions"),
+              //         dv,
+              //         DataTable(
+              //           columns: [
+              //             DataColumn(
+              //               label: Text("Activity"),
+              //             ),
+              //             DataColumn(
+              //               label: Text("Date"),
+              //             ),
+              //             DataColumn(
+              //               numeric: true,
+              //               label: Text("Amount"),
+              //             ),
+              //           ],
+              //           rows: [
+              //             DataRow(
+              //               // color: ,
+              //               cells: [
+              //                 DataCell(
+              //                   Text("Depost"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("2/5/2010"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("50,000"),
+              //                 ),
+              //               ],
+              //             ),
+              //             DataRow(
+              //               cells: [
+              //                 DataCell(
+              //                   Text("Withdraw"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("2/5/2010"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("20,000"),
+              //                 ),
+              //               ],
+              //             ),
+              //             DataRow(
+              //               cells: [
+              //                 DataCell(
+              //                   Text("Withdraw"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("2/5/2010"),
+              //                 ),
+              //                 DataCell(
+              //                   Text("20,000"),
+              //                 ),
+              //               ],
+              //             )
+              //           ],
+              //         ),
+              //         Row(
+              //           children: [
+              //             Expanded(
+              //               child: SizedBox(),
+              //             ),
+              //             Icon(
+              //               Icons.add,
+              //               color: Colors.blue,
+              //             ),
+              //             Text(
+              //               'More Details',
+              //               style: TextStyle(
+              //                 color: Colors.blue,
+              //               ),
+              //             )
+              //           ],
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),

@@ -12,6 +12,7 @@ class SignUpController extends GetxController {
   late String phone;
   late String paswKey;
   var isNotVissible = true.obs;
+  var isLoading = false.obs;
 
   final GlobalKey<FormState> signUpForm = GlobalKey<FormState>();
   late TextEditingController phoneController,
@@ -115,12 +116,15 @@ class SignUpController extends GetxController {
 
   Future signUp() async {
     try {
+      isLoading.value = true;
       var headers = {
         'Content-Type': 'application/json',
         'Cookie': 'PHPSESSID=78bf56f55656e140c02fab0318fe15d1'
       };
       var request = http.Request(
-          'POST', Uri.parse('https://wallet.ahuriire.com/signup/'));
+        'POST',
+        Uri.parse('https://wallet.ahuriire.com/signup/'),
+      );
       request.body = json.encode({
         "phone": "$phone",
         "name": "$name",
@@ -129,10 +133,12 @@ class SignUpController extends GetxController {
       });
       request.headers.addAll(headers);
 
-      http.StreamedResponse response =
-          await request.send().timeout(Duration(seconds: 10));
+      http.StreamedResponse response = await request.send().timeout(
+            Duration(seconds: 10),
+          );
 
       if (response.statusCode == 200) {
+        isLoading.value = false;
         var res = await response.stream.bytesToString();
         print(res);
         var body = jsonDecode(res);
@@ -141,7 +147,9 @@ class SignUpController extends GetxController {
         switch (_statusCode) {
           case 201:
             {
-              Get.off(() => OptView());
+              Get.off(
+                () => OptView(),
+              );
             }
             break;
 
@@ -159,6 +167,7 @@ class SignUpController extends GetxController {
         print(response.reasonPhrase);
       }
     } catch (e) {
+      isLoading.value = false;
       _dialog(msg: "$e");
     }
   }
